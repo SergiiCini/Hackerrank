@@ -13,7 +13,8 @@ public class Solution {
      */
     static String timeConversion(String s) {
         String newString = "";
-        if (s.contains("PM")) {
+        if (s.endsWith("PM")) {
+            String newS = s.substring(0, s.indexOf("PM"));
             String[] sArray = s.split(":");
             String[] lArray = sArray[2].split("PM");
             int lInt = Integer.parseInt(lArray[0]);
@@ -23,7 +24,7 @@ public class Solution {
                 int fInt = Integer.parseInt(sArray[0]) + 12;
                 sArray[0] = Integer.toString(fInt);
             }
-            newString = sArray[0] + ":" + sArray[1] + ":" + lInt;
+            newString = String.format("%s:%s:%d",sArray[0], sArray[1], lInt);
         } else if (s.contains("AM")) {
             String[] sArray = s.split(":");
             String[] lArray = sArray[2].split("AM");
